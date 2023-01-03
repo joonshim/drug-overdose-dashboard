@@ -69,7 +69,7 @@ data_sub = load_data_sub(data,year).copy()
 data_sub.loc[len(data_sub)] = ['Overall',round(np.mean(data_sub.iloc[:,1]),2),round(np.mean(data_sub.iloc[:,2]),2)]
 
 # Choropleth plot
-fig1 = px.choropleth_mapbox(data,
+fig = px.choropleth_mapbox(data,
                            geojson=states,
                            locations='fips',
                            color=f'{key}_{year}',
@@ -79,19 +79,18 @@ fig1 = px.choropleth_mapbox(data,
                            hover_data={'fips':False, f'num_{year}':True, f'rate_{year}':True},
                            labels={f'num_{year}':'Annual Count  (#)', f'rate_{year}':'Age-adjusted rate'}
 )
-fig1.update_layout(
+fig.update_layout(
     mapbox_style="carto-positron",
-    mapbox_zoom=2.5,
-    mapbox_center={"lat": 40.8902, "lon": -98.8129},
-    width=1100,
-    height=600
+    #mapbox_zoom=2.5,
+    mapbox_center={"lat": 37.8902, "lon": -98.8129},
 )
-st.write(fig1)
+st.plotly_chart(fig, use_container_width=True)
 
 # Bar chart
-fig2 = alt.Chart(data_sub).mark_bar().encode(
+fig = alt.Chart(data_sub).mark_bar().encode(
     x=alt.X('location:O',title='State',sort=alt.EncodingSortField(field=f'{key}_{year}',op='sum',order='descending')),
     y=alt.Y(f'{key}_{year}:Q',title=col_dict[f'{key}_{year}']),
+    # vertical view
     # x=alt.X(f'{key}_{year}:Q',title=col_dict[f'{key}_{year}']),
     # y=alt.Y('location:O',title='State',
     #         sort=alt.EncodingSortField(field=f'{key}_{year}',op='sum',order='descending')),
@@ -100,9 +99,9 @@ fig2 = alt.Chart(data_sub).mark_bar().encode(
         alt.value('orange'),
         alt.value('steelblue')
     )
-).properties(width=940, height=500)
+)
 
-# text = fig2.mark_text(
+# to make figures visible# text = fig2.mark_text(
 #     align='left',
 #     baseline='middle',
 #     dx=-10,
@@ -111,5 +110,5 @@ fig2 = alt.Chart(data_sub).mark_bar().encode(
 #     text=f'{key}_{year}:Q'
 # )
 
-st.altair_chart(fig2)
-# st.altair_chart(fig2+text)
+st.altair_chart(fig, use_container_width=True)
+# st.altair_chart(fig2+text, use_container_width=True)
