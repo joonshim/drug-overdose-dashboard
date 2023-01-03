@@ -13,7 +13,7 @@ from urllib.request import urlopen
 #####################################################################
 
 # Layout
-st.set_page_config(layout='wide', page_title='CDC - Drug Overdose Report', page_icon=':pill:')
+st.set_page_config(layout='wide', page_title='Drug Overdose Data Report', page_icon=':pill:')
 
 # Load geojson, load image
 def load_logo():
