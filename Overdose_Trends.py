@@ -58,7 +58,7 @@ count_20 = data_time.loc[2020,'num_total']
 rate_21 = data_time.loc[2021,'rate_total']
 rate_20 = data_time.loc[2020,'rate_total']
 fentanyl_21 = data_time.loc[2021,'num_synthetic']
-fentanyl_20 = data_time.loc[2020,'rate_synthetic']
+fentanyl_20 = data_time.loc[2020,'num_synthetic']
 
 perc_anyopioid = round(data_time.loc[2021,'num_anyopioid']/data_time.loc[2021,'num_total'],2)
 perc_fentanyl =  round(data_time.loc[2021,'num_synthetic']/data_time.loc[2021,'num_total'],2)
