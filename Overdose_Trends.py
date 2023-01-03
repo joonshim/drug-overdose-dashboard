@@ -21,7 +21,7 @@ def load_logo():
     return logo
 logo=load_logo()
 
-st.title('CDC Drug Overdose Data Report')
+st.title('Drug Overdose Data Report')
 
 with st.sidebar:
     with st.expander("**Incidence Measures**:"):
