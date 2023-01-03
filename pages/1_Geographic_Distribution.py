@@ -56,6 +56,11 @@ with st.sidebar:
     year = st.radio('Select year:', ('2016','2017','2018','2019','2020'))
     key = st.radio("Select count or rate:", ('num', 'rate'), format_func=col_dict.get, horizontal=True)
 
+    with st.sidebar:
+    with st.expander("**Note: Data Collection**:"):
+        st.caption('Please note that the geographic distribution data for 2021 has not been released yet.')
+
+
 if key=='num':
     st.subheader(f'Number of overdose deaths in the Unites States by jurisdiction in {year}')
 if key=='rate':
